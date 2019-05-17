@@ -1,18 +1,25 @@
+import 'dart:io';
+
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    if (Platform.isAndroid) {
+      SystemUiOverlayStyle systemUiOverlayStyle =
+          SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+    }
     return new MaterialApp(
       title: 'Welcome to Flutter',
-      home: new Scaffold(
-        body: new Center(
-          child: new RandomWords(),
-        ),
+      theme: new ThemeData(
+        primaryColor: Colors.white,
       ),
+      home: new RandomWords(),
     );
   }
 }
